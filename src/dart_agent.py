@@ -174,6 +174,32 @@ def read_amount(row, kind, report_code):
     return None
 
 def fetch_report(corp, year, report_label, report_code):
+    raw_path = ROOT / "data" / "raw" / f"{year}_{report_label}.json"
+
+    def build_record(rows, default_fs_div):
+        record = {
+            "year": year,
+            "source_report": report_label,
+            "reprt_code": report_code,
+            "rcept_no": rows[0].get("rcept_no", ""),
+            "fs_div": rows[0].get("fs_div", default_fs_div),
+        }
+        for field in A:
+            record[field] = account_value(rows, field, report_code)
+        if record["gross_profit"] is None and record["revenue"] is not None and record["cost_of_sales"] is not None:
+            record["gross_profit"] = record["revenue"] - abs(record["cost_of_sales"])
+        return record
+
+    # Reuse immutable historical filing responses during monthly updates.
+    # Re-fetch the latest two years to pick up newly filed reports and restatements.
+    if raw_path.exists() and year < date.today().year - 1:
+        try:
+            cached_rows = json.loads(raw_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            cached_rows = []
+        if cached_rows:
+            return build_record(cached_rows, cached_rows[0].get("fs_div", "CFS"))
+
     for fs_div in ("CFS", "OFS"):
         result = api("fnlttSinglAcntAll.json", {
             "corp_code": corp, "bsns_year": str(year),
@@ -181,22 +207,9 @@ def fetch_report(corp, year, report_label, report_code):
         })
         rows = result.get("list", []) or []
         if rows:
-            record = {
-                "year": year,
-                "source_report": report_label,
-                "reprt_code": report_code,
-                "rcept_no": rows[0].get("rcept_no", ""),
-                "fs_div": rows[0].get("fs_div", fs_div),
-            }
-            for field in A:
-                record[field] = account_value(rows, field, report_code)
-            # Revenue minus cost of sales is a transparent fallback when gross profit is not a reported line.
-            if record["gross_profit"] is None and record["revenue"] is not None and record["cost_of_sales"] is not None:
-                record["gross_profit"] = record["revenue"] - abs(record["cost_of_sales"])
-            raw_path = ROOT / "data" / "raw" / f"{year}_{report_label}.json"
             raw_path.parent.mkdir(parents=True, exist_ok=True)
             raw_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
-            return record
+            return build_record(rows, fs_div)
     return None
 
 def days_in_period(year, period, quarter=None):
@@ -365,7 +378,7 @@ def derive_metrics(rows):
 def main():
     if not KEY:
         raise SystemExit("DART_API_KEY is missing. Add it in repository Actions secrets.")
-    corp = find_corp_code()
+    corp = str(CFG.get("corp_code") or "").strip() or find_corp_code()
     today = date.today()
     first_year = int(CFG.get("start_year", 2010))
     report_rows = []
