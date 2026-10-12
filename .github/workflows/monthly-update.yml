@@ -16,7 +16,7 @@ permissions:
   id-token: write
 concurrency:
   group: inbody-data-update
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   update:
     runs-on: ubuntu-latest
