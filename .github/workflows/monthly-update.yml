@@ -10,9 +10,10 @@ on:
       - 'dashboard/build_dashboard.py'
       - 'config.json'
       - 'requirements.txt'
-      - '.github/workflows/monthly-update.yml'
 permissions:
   contents: write
+  pages: write
+  id-token: write
 concurrency:
   group: inbody-data-update
   cancel-in-progress: false
@@ -20,6 +21,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 50
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -66,3 +70,12 @@ jobs:
           git fetch origin "$GITHUB_REF_NAME"
           git rebase "origin/$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+      - name: Deploy dashboard
+        id: deployment
+        uses: actions/deploy-pages@v5
