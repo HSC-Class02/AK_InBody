@@ -406,7 +406,7 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     columns = list(dict.fromkeys(k for row in period_rows for k in row.keys()))
     with (out_dir / "financials.csv").open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns, extrasaction="ignore")
+        writer = csv.DictWriter(handle, fieldnames=columns, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         writer.writerows(period_rows)
     coverage["period_rows"] = len(period_rows)
