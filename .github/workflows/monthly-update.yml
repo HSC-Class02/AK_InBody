@@ -62,4 +62,7 @@ jobs:
             exit 0
           fi
           git commit -m "chore: refresh InBody OpenDART financial data"
-          git push origin "$GITHUB_REF_NAME"
+          # Reconcile commits made while this collection job was running.
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
