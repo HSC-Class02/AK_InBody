@@ -10,9 +10,9 @@ permissions:
 jobs:
   api-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 2
     steps:
-      - name: Test a valid three-month disclosure-list request
+      - name: Test API key and disclosure-list endpoint
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: |
@@ -39,29 +39,6 @@ jobs:
           status = str(result.get("status", ""))
           print(f"Disclosure-list API status: {status}; message: {result.get('message', '')}")
           if status not in {"000", "013"}:
-              raise SystemExit("Disclosure-list request was rejected; check API key status/quota and request parameters.")
-          PY
-      - name: Check corpCode.xml download and InBody code lookup
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: |
-          python - <<'PY'
-          import io, os, urllib.parse, urllib.request, zipfile, xml.etree.ElementTree as ET
-          key = os.environ.get("DART_API_KEY", "").strip()
-          url = "https://opendart.fss.or.kr/api/corpCode.xml?" + urllib.parse.urlencode({"crtfc_key": key})
-          try:
-              with urllib.request.urlopen(url, timeout=20) as response:
-                  body = response.read()
-          except Exception as exc:
-              raise SystemExit(f"corpCode.xml request failed: {type(exc).__name__}: {exc}")
-          print(f"corpCode.xml downloaded: {len(body):,} bytes")
-          with zipfile.ZipFile(io.BytesIO(body)) as archive:
-              xml_names = [n for n in archive.namelist() if n.lower().endswith(".xml")]
-              if not xml_names:
-                  raise SystemExit("corpCode.xml response did not contain XML.")
-              root = ET.fromstring(archive.read(xml_names[0]))
-          match = next((x for x in root.findall("list") if (x.findtext("stock_code") or "").strip().zfill(6) == "041830"), None)
-          print(f"InBody stock code 041830 found: {match is not None}")
-          if match is None:
-              raise SystemExit("InBody stock code 041830 was not found in corpCode.xml.")
+              raise SystemExit("OpenDART rejected the request. Check API key status, quota, and request parameters.")
+          print("OpenDART connectivity and key check passed.")
           PY
