@@ -29,7 +29,7 @@ MULTIPLES = {
     "current_ratio", "quick_ratio", "interest_coverage", "net_debt_to_ebitda",
     "asset_turnover", "receivables_turnover", "inventory_turnover",
 }
-DAYS = {"dso_days", "dio_days", "dpo_days", "ccc_days}
+DAYS = {"dso_days", "dio_days", "dpo_days", "ccc_days"}
 LABELS = {
     "year": "Year", "period": "Category", "quarter": "Quarter", "fs_div": "FS",
     "revenue": "Revenue", "cost_of_sales": "Cost of sales", "gross_profit": "Gross profit",
