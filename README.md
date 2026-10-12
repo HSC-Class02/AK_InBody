@@ -11,7 +11,8 @@
 - **Processed data:** 연간·반기·분기 정규화 결과는 `data/processed/financials.csv`, 수집 범위는 `data/processed/coverage.json`
 - **Reports:** 사업보고서(11011), 반기보고서(11012), 1분기보고서(11013), 3분기보고서(11014)
 - **Refresh:** 매월 1일 오전 9시 17분(KST, UTC 00:17)에 실행. Actions에서 수동 실행도 가능
-- **Deployment:** 수집 후 대시보드 HTML이 갱신되면 GitHub Pages 배포 워크플로가 실행됩니다.
+- **Deployment:** 월별 수집 워크플로가 HTML 생성·커밋과 GitHub Pages 배포까지 같은 실행에서 처리합니다. Pages 전용 워크플로는 직접 수정한 사이트 파일을 배포할 때도 사용할 수 있습니다.
+- **Incremental refresh:** 최초 백필 후에는 원문 JSON으로 과거 연도 데이터를 재사용하고 최근 2개 연도의 보고서는 다시 조회합니다.
 
 ## Initial setup / secrets
 
