@@ -1,0 +1,318 @@
+{
+  "company": "InBody",
+  "stock_code": "041830",
+  "corp_code": "00269922",
+  "configured_start_year": 2010,
+  "standard_api_first_year": 2015,
+  "run_date": "2026-10-12",
+  "years_before_standard_api": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+  ],
+  "reports_found": [
+    {
+      "year": 2015,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20160330004706"
+    },
+    {
+      "year": 2016,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20170331005526"
+    },
+    {
+      "year": 2016,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20160816002203"
+    },
+    {
+      "year": 2016,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20160516003794"
+    },
+    {
+      "year": 2016,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20161114002463"
+    },
+    {
+      "year": 2017,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20180402003361"
+    },
+    {
+      "year": 2017,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20170811001218"
+    },
+    {
+      "year": 2017,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20170515004782"
+    },
+    {
+      "year": 2017,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20171114002760"
+    },
+    {
+      "year": 2018,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20190401004564"
+    },
+    {
+      "year": 2018,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20180814002288"
+    },
+    {
+      "year": 2018,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20180516000356"
+    },
+    {
+      "year": 2018,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20181114002170"
+    },
+    {
+      "year": 2019,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20200330004302"
+    },
+    {
+      "year": 2019,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20190814002460"
+    },
+    {
+      "year": 2019,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20190515002729"
+    },
+    {
+      "year": 2019,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20191114002647"
+    },
+    {
+      "year": 2020,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20210316001093"
+    },
+    {
+      "year": 2020,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20200826000331"
+    },
+    {
+      "year": 2020,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20200515000811"
+    },
+    {
+      "year": 2020,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20201116001973"
+    },
+    {
+      "year": 2021,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20220317000681"
+    },
+    {
+      "year": 2021,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20210817000583"
+    },
+    {
+      "year": 2021,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20210517001560"
+    },
+    {
+      "year": 2021,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20211115002189"
+    },
+    {
+      "year": 2022,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20230321001189"
+    },
+    {
+      "year": 2022,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20221114001715"
+    },
+    {
+      "year": 2022,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20220516002423"
+    },
+    {
+      "year": 2022,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20221114001830"
+    },
+    {
+      "year": 2023,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20240318000741"
+    },
+    {
+      "year": 2023,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20230814002619"
+    },
+    {
+      "year": 2023,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20230515002674"
+    },
+    {
+      "year": 2023,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20231130001721"
+    },
+    {
+      "year": 2024,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20250317000816"
+    },
+    {
+      "year": 2024,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20240814002588"
+    },
+    {
+      "year": 2024,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20240516001856"
+    },
+    {
+      "year": 2024,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20241114001611"
+    },
+    {
+      "year": 2025,
+      "report": "annual",
+      "fs_div": "CFS",
+      "rcept_no": "20260318001304"
+    },
+    {
+      "year": 2025,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20250814003921"
+    },
+    {
+      "year": 2025,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20250515002655"
+    },
+    {
+      "year": 2025,
+      "report": "q3",
+      "fs_div": "CFS",
+      "rcept_no": "20251114002526"
+    },
+    {
+      "year": 2026,
+      "report": "half_year",
+      "fs_div": "CFS",
+      "rcept_no": "20260814003648"
+    },
+    {
+      "year": 2026,
+      "report": "q1",
+      "fs_div": "CFS",
+      "rcept_no": "20260514001453"
+    }
+  ],
+  "missing_reports": [
+    {
+      "year": 2015,
+      "report": "half_year",
+      "reason": "No filing/data returned"
+    },
+    {
+      "year": 2015,
+      "report": "q1",
+      "reason": "No filing/data returned"
+    },
+    {
+      "year": 2015,
+      "report": "q3",
+      "reason": "No filing/data returned"
+    },
+    {
+      "year": 2026,
+      "report": "annual",
+      "reason": "No filing/data returned"
+    },
+    {
+      "year": 2026,
+      "report": "q3",
+      "reason": "No filing/data returned"
+    }
+  ],
+  "note": "The standard OpenDART full-financial-statements endpoint documents data from 2015 onward. Earlier filings require a separate original-filing/XBRL parser and are not fabricated here.",
+  "period_rows": 65,
+  "available_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ]
+}
