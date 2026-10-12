@@ -1,0 +1,45 @@
+name: OpenDART API Smoke Test
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dart-smoke-test.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Verify secret and OpenDART connectivity
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.parse, urllib.request
+          from datetime import date
+          key = os.environ.get("DART_API_KEY", "").strip()
+          if not key:
+              raise SystemExit("Missing DART_API_KEY secret.")
+          params = {
+              "crtfc_key": key,
+              "bgn_de": f"{date.today().year}0101",
+              "end_de": date.today().strftime("%Y%m%d"),
+              "page_no": "1",
+              "page_count": "1",
+              "pblntf_ty": "A",
+              "corp_name": "인바디",
+          }
+          url = "https://opendart.fss.or.kr/api/list.json?" + urllib.parse.urlencode(params)
+          try:
+              with urllib.request.urlopen(url, timeout=20) as response:
+                  result = json.loads(response.read().decode("utf-8"))
+          except Exception as exc:
+              raise SystemExit(f"OpenDART network/request failed: {type(exc).__name__}: {exc}")
+          status = str(result.get("status", ""))
+          print(f"OpenDART response status: {status}; message: {result.get('message', '')}")
+          if status not in {"000", "013"}:
+              raise SystemExit("OpenDART rejected the request. Check the API key, access status, and quota.")
+          print("OpenDART API connectivity and authentication check passed.")
+          PY
